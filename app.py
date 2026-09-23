@@ -1,31 +1,38 @@
-from flask import Flask, render_template, request, jsonify
+from pathlib import Path
+
+from flask import Flask, jsonify, render_template, request
 import pandas as pd
 import json
 import joblib
-import os
 
 app = Flask(__name__)
 
 # Load trained Machine Learning model & Dataset safely
-MODEL_PATH = 'house_model.pkl'
-DATA_PATH = 'data/housing_data.json'
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / 'house_model.pkl'
+DATA_PATH = BASE_DIR / 'data' / 'housing_data.json'
 
 model = None
 housing_data = []
 
 # Load model if available
-if os.path.exists(MODEL_PATH):
+if MODEL_PATH.exists():
     model = joblib.load(MODEL_PATH)
 
 # Load JSON dataset if available
-if os.path.exists(DATA_PATH):
-    with open(DATA_PATH, 'r') as f:
+if DATA_PATH.exists():
+    with DATA_PATH.open(encoding='utf-8') as f:
         housing_data = json.load(f)
 
 @app.route('/')
 def home():
     # Serves the index.html page from templates/
     return render_template('index.html')
+
+
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({'status': 'ok', 'modelLoaded': model is not None})
 
 @app.route('/api/data', methods=['GET'])
 def get_data():
@@ -91,5 +98,4 @@ def predict_single():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
-    print("🚀 Starting Flask server on http://127.0.0.1:5000")
-    app.run(debug=True, port=5000)
+    app.run(host='127.0.0.1', port=5000, debug=False)
