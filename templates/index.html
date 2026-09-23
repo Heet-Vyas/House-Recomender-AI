@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI House Price Predictor & Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏡 AI House Price Predictor & Recommender</h1>
+            <p>Powered by Python, Flask, and Scikit-Learn Machine Learning</p>
+        </header>
+
+        <main class="grid-layout">
+            <!-- Section 1: Filters & Budget Search -->
+            <section class="card">
+                <h2>🔍 Find Homes Within Budget</h2>
+                <div class="form-group">
+                    <label for="userBudget">Maximum Budget (₹):</label>
+                    <input type="number" id="userBudget" value="500000" step="10000">
+                </div>
+                <div class="form-group">
+                    <label for="areaFilter">Neighborhood / Area:</label>
+                    <select id="areaFilter">
+                        <option value="ALL">📍 All Areas</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="minBedrooms">Min Bedrooms:</label>
+                        <input type="number" id="minBedrooms" value="1" min="1" max="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="minSqft">Min Sqft:</label>
+                        <input type="number" id="minSqft" value="500" step="100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="minLocation">Min Location Score (1-10):</label>
+                    <input type="number" id="minLocation" value="1" min="1" max="10">
+                </div>
+            </section>
+
+            <!-- Section 2: AI Single Property Price Estimator -->
+            <section class="card">
+                <h2>🤖 Instant AI Property Valuation</h2>
+                <form id="valuationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="valSqft">Area (sqft):</label>
+                            <input type="number" id="valSqft" value="1500" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="valBeds">Bedrooms:</label>
+                            <input type="number" id="valBeds" value="3" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="valBaths">Bathrooms:</label>
+                            <input type="number" id="valBaths" value="2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="valLocation">Location Score (1-10):</label>
+                            <input type="number" id="valLocation" value="8" min="1" max="10" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="valAge">Property Age (years):</label>
+                        <input type="number" id="valAge" value="5" required>
+                    </div>
+                    <button type="submit" class="btn">Calculate AI Price</button>
+                </form>
+                <div id="valuationResult" style="margin-top: 15px;"></div>
+            </section>
+        </main>
+
+        <!-- Section 3: Recommendations Display -->
+        <section class="card results-section">
+            <h2>📋 Recommended Properties</h2>
+            <div id="recommendationsOutput">
+                <p class="loading">Loading properties...</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Section 4: Analytics & Visual Charts -->
+<section class="card" style="margin-top: 25px;">
+    <h2>📊 Real Estate Analytics & Market Insights</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 15px;">
+        <!-- Chart 1: Bar Chart -->
+        <div style="background: #0f172a; padding: 15px; border-radius: 8px; border: 1px solid #334155;">
+            <h3 style="font-size: 0.95rem; color: #38bdf8; margin-bottom: 10px; text-align: center;">
+                📍 Avg. Price by Area (₹ in Lakhs)
+            </h3>
+            <canvas id="areaPriceChart"></canvas>
+        </div>
+
+        <!-- Chart 2: Doughnut/Pie Chart -->
+        <div style="background: #0f172a; padding: 15px; border-radius: 8px; border: 1px solid #334155;">
+            <h3 style="font-size: 0.95rem; color: #38bdf8; margin-bottom: 10px; text-align: center;">
+                🏠 Property BHK Distribution
+            </h3>
+            <canvas id="bhkDistributionChart"></canvas>
+        </div>
+
+        <!-- Chart 3: Scatter Chart -->
+        <div style="background: #0f172a; padding: 15px; border-radius: 8px; border: 1px solid #334155;">
+            <h3 style="font-size: 0.95rem; color: #38bdf8; margin-bottom: 10px; text-align: center;">
+                📐 Price vs. Square Footage (Sqft)
+            </h3>
+            <canvas id="priceSqftChart"></canvas>
+        </div>
+    </div>
+</section>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

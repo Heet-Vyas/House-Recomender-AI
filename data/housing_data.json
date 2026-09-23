@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "area": "Downtown",
+    "sqft": 1200,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "locationScore": 9,
+    "age": 5,
+    "actualPrice": 350000
+  },
+  {
+    "id": 2,
+    "area": "Downtown",
+    "sqft": 1800,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "locationScore": 9,
+    "age": 2,
+    "actualPrice": 480000
+  },
+  {
+    "id": 3,
+    "area": "Suburbs",
+    "sqft": 2200,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "locationScore": 7,
+    "age": 10,
+    "actualPrice": 410000
+  },
+  {
+    "id": 4,
+    "area": "Suburbs",
+    "sqft": 1500,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "locationScore": 6,
+    "age": 12,
+    "actualPrice": 290000
+  },
+  {
+    "id": 5,
+    "area": "Uptown",
+    "sqft": 950,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "locationScore": 8,
+    "age": 3,
+    "actualPrice": 240000
+  },
+  {
+    "id": 6,
+    "area": "Uptown",
+    "sqft": 2500,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "locationScore": 8,
+    "age": 1,
+    "actualPrice": 590000
+  },
+  {
+    "id": 7,
+    "area": "Westside",
+    "sqft": 1600,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "locationScore": 7,
+    "age": 8,
+    "actualPrice": 320000
+  },
+  {
+    "id": 8,
+    "area": "Westside",
+    "sqft": 2100,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "locationScore": 8,
+    "age": 4,
+    "actualPrice": 450000
+  }
+]
